@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const handler = require("express-async-handler")
 const utils = require("../utils/helperUtils");
 const authUtils = require("../utils/authUtils");
+const constantUtils = require("../utils/constantUtils")
 const controller = {}
 const session = {}
 
@@ -23,6 +24,7 @@ if(verifyUser) throw "THIS_EMAIL_ID_ALREADY_HAVE_A_ACCOUNT"
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req?.body?.password, salt);
 
+
            const userCreate = await User.create({
                userId:utils.getRandomNumber(16),
                name:req?.body?.name,
@@ -31,7 +33,7 @@ if(verifyUser) throw "THIS_EMAIL_ID_ALREADY_HAVE_A_ACCOUNT"
                date:new Date()
         
            })
-           if(req?.body?.admin){
+           if(req?.body?.admin === constantUtils.ADMIN){
             userCreate.admin=req?.body?.admin
             await userCreate.save()
            }
