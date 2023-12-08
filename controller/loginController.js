@@ -42,7 +42,7 @@ if(verifyUser) throw "THIS_EMAIL_ID_ALREADY_HAVE_A_ACCOUNT"
             const userDetails = await User.findOne({
                 where: {
                     userId: userCreate?.userId,
-                },
+                }
             });
         
             if (userDetails) {
