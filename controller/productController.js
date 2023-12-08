@@ -46,4 +46,23 @@ controller.editProducts = handler(async(req, res)=>{
         res?.json({message:"EDITED"})
 })
 
+
+controller.deleteProduct = handler(async(req, res)=>{
+    if(!req?.body?.productId) throw "PRODUCT_ID_REQUIRED"
+    
+        const checkProduct = await Products.findOne({
+            where:{
+                productId:req?.body?.productId
+            }
+        })
+        if(!checkProduct) throw "INVAILD_PRODUCT"
+        
+        const deleteProduct = await Products.destroy({
+            where:{
+                productId:checkProduct?.productId
+            }
+        })
+        if(!deleteProduct) throw "SOMETHING_WENT_WRONG"
+        res.json({message:"PRODUCT_DELETED"})
+})
 module.exports = controller

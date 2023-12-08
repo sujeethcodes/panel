@@ -15,5 +15,6 @@ router.post("/userLogOut", verifyToken,userController.logOut)
 // PRODUCT CONTROLLER ROUTES
 router.post("/createProduct",verifyToken,verifyAdmin,productController.createProducts)
 router.post("/editProduct",verifyToken,verifyAdmin,productController.editProducts)
+router.post("/deleteProduct", verifyToken,verifyAdmin,productController.deleteProduct)
 
 module.exports = router
