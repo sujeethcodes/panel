@@ -35,7 +35,7 @@ utils.verifyToken = async (req, res, next) => {
         message: "Un Authenticate",
       });
     } else {
-      req.account = verifyToken;
+     
       next();
     }
   } catch (error) {
