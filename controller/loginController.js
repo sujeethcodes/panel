@@ -6,7 +6,7 @@ const utils = require("../utils/helperUtils");
 const authUtils = require("../utils/authUtils");
 const constantUtils = require("../utils/constantUtils")
 const controller = {}
-const session = {}
+
 
 controller.userCreate = handler(async(req, res)=>{
         if(!req?.body?.name) throw "USERNAME_REQURIED"
@@ -94,7 +94,7 @@ controller.deleteUser = handler(async(req,res)=>{
 })
 
 controller.userLogin = handler(async(req, res)=>{
-const sessionId = uuid()
+ 
 
 if(!req?.body?.email) throw "EMAIL_REQUIRED"
 if(!req?.body?.password) throw "PASSWORD_REQUIRED"
@@ -108,7 +108,6 @@ if(!req?.body?.password) throw "PASSWORD_REQUIRED"
         await bcrypt.compare(req?.body?.password, verifyUser?.password).then((match) => {
 
             if(match){
-                session[sessionId] = {name:verifyUser?.name, email:verifyUser?.email}
                 res.set(`Set-Cookie`,`sessionId=${verifyUser?.token}`)
                 res.json({message:"success"})
             }else{

@@ -8,7 +8,7 @@ const productController = require("../controller/productController")
 router.post("/userCreate", userController.userCreate)
 router.post("/editUser",verifyToken, userController.editUser)
 router.post("/deleteUser", verifyToken,userController.deleteUser)
-router.post("/userLogin",verifyToken, userController.userLogin)
+router.post("/userLogin", userController.userLogin)
 router.post("/userLogOut", verifyToken,userController.logOut)
 
 
