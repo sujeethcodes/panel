@@ -65,4 +65,12 @@ controller.deleteProduct = handler(async(req, res)=>{
         if(!deleteProduct) throw "SOMETHING_WENT_WRONG"
         res.json({message:"PRODUCT_DELETED"})
 })
+
+controller.viewProduct = handler(async(req, res)=>{
+    const viewProduct = await Products.findAll({
+        order:[["id","DESC"]]
+    })
+    res.json(viewProduct)
+})
+
 module.exports = controller

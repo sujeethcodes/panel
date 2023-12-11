@@ -6,7 +6,6 @@ const utils = require("../utils/helperUtils");
 const authUtils = require("../utils/authUtils");
 const constantUtils = require("../utils/constantUtils")
 const controller = {}
-const session = {}
 
 controller.userCreate = handler(async(req, res)=>{
         if(!req?.body?.name) throw "USERNAME_REQURIED"
