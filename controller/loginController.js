@@ -6,7 +6,7 @@ const utils = require("../utils/helperUtils");
 const authUtils = require("../utils/authUtils");
 const constantUtils = require("../utils/constantUtils")
 const controller = {}
-
+const session = {}
 
 controller.userCreate = handler(async(req, res)=>{
         if(!req?.body?.name) throw "USERNAME_REQURIED"
@@ -122,7 +122,7 @@ if(!req?.body?.password) throw "PASSWORD_REQUIRED"
 
 controller.logOut = handler(async(req, res)=>{
     const sessionId = req.headers.cookie?.split("=")[1];
-    delete session[sessionId]
+    // delete session[sessionId]
     res.set("Set-Cookie", "session=");
     return res.json({message:"LOGOUT_SUCCESSFULLY"})
 })

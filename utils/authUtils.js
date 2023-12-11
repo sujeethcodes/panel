@@ -16,7 +16,8 @@ utils.tokenGenerate = (id) => {
 
 utils.verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers.cookie?.split("=")[2];
+    const token = req.headers.cookie?.split("=")[1];
+   
     if (!token) {
       return res.status(401).json({
         statusCode: 401,
