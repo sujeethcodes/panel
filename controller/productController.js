@@ -67,10 +67,24 @@ controller.deleteProduct = handler(async(req, res)=>{
 })
 
 controller.viewProduct = handler(async(req, res)=>{
-    const viewProduct = await Products.findAll({
-        order:[["id","DESC"]]
-    })
-    res.json(viewProduct)
+    if(req?.body?.productName){
+        const product = await Products.findAll({
+            where:{
+                productName:req?.body?.productName
+            }
+        })
+        res?.json(product)
+    }else{
+        const viewProduct = await Products.findAll({
+            order:[["id","DESC"]]
+        })
+    if(viewProduct){
+        res.json(viewProduct)
+    }
+    }
+    
+   
+   
 })
 
 module.exports = controller
