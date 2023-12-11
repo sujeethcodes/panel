@@ -122,7 +122,6 @@ if(!req?.body?.password) throw "PASSWORD_REQUIRED"
 
 controller.logOut = handler(async(req, res)=>{
     const sessionId = req.headers.cookie?.split("=")[1];
-    // delete sessionId
     res.set("Set-Cookie", "sessionId=");
     return res.json({message:"LOGOUT_SUCCESSFULLY"})
 })
